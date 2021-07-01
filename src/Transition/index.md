@@ -1,7 +1,7 @@
 ---
-title: 'Transition 出现消失动画'
+title: Transition
 group:
-  title: Transition 出现消失动画
+  title: Transition
 nav:
   title: 组件
   path: /components
