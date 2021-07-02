@@ -17,7 +17,7 @@ nav:
 
 ## 基本使用
 
-<code src="./demos/Base.tsx">
+<code src="./demos">
 
 <API src="./index.tsx"></API>
 

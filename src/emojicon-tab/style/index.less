@@ -1,0 +1,25 @@
+@import '../../style/themes/default.less';
+
+@emojicon-prefix: ~'@{st-prefix}-emoji-tab';
+
+.@{emojicon-prefix} {
+  position: relative;
+  display: inline-block;
+
+  &-emoji {
+    font-size: 18px;
+    padding: 2px;
+    cursor: pointer;
+  }
+
+  &-emojo-text {
+    display: inline-block;
+    cursor: pointer;
+  }
+}
+
+.@{emojicon-prefix}-overlay {
+  .ant-popover-inner-content {
+    width: 400px;
+  }
+}

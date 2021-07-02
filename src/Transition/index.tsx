@@ -10,7 +10,7 @@ export const animationPrefix = `${defaultPrefixCls}-animation`;
 export type TransitionProps = {
   /**
    * @description 指定动画类型
-   * @default "top"
+   * @default top
    */
   animation?: AnimationName;
   /**

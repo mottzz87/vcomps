@@ -1,14 +1,14 @@
 /*
  * @Author: Vane
  * @Date: 2021-07-01 11:40:02
- * @LastEditTime: 2021-07-01 12:49:05
+ * @LastEditTime: 2021-07-02 10:30:11
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \vcomps\src\Transition\demos\Base.tsx
  */
 import React, { useState } from 'react';
 import { Transition } from 'vcomps';
-import { AnimationName } from 'vcomps/lib/transition';
+import { AnimationName } from '@/transition';
 import { Button } from 'antd';
 
 export default () => {
@@ -28,7 +28,7 @@ export default () => {
       <Button onClick={() => handleClick('center')}>从中间向四周</Button>
 
       <Transition animation={animation} in={show} timeout={3000}>
-        <div style={{ background: '#1890ff', height: 100 }}>1</div>
+        <div style={{ background: '#1890ff', height: 100 }}>我是内容</div>
       </Transition>
     </>
   );

@@ -1,15 +1,13 @@
 ---
-title: Foo
-group:
-  title: Foo
+title: 介绍
+toc: menu
 nav:
-  title: 组件
-  path: /components
+  title: 指南
 ---
 
 ## Foo
 
-Demo:
+栗子:
 
 ```tsx
 import React from 'react';
