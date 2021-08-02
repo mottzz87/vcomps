@@ -1,9 +1,9 @@
 /*
  * @Author: Vane
  * @Date: 2021-07-02 10:32:46
- * @LastEditTime: 2021-07-02 17:13:14
+ * @LastEditTime: 2021-08-02 16:51:07
  * @LastEditors: Vane
- * @Description: 
+ * @Description:
  * @FilePath: \vcomps\src\chat-panel\components\ChatList\ChatItem.tsx
  */
 import React, { FC, useCallback, useMemo } from 'react';
@@ -11,19 +11,15 @@ import { usePrefixCls } from '@/_hooks';
 import classNames from 'classnames';
 import { EnlargeImg } from 'vcomps';
 import { ContentType } from '../../utils';
+import { messageParsing } from '@/_utils/messageParsing';
 
 interface ChatItemProps {
   layout: 'left' | 'right' | 'center';
   chatItem: any;
   contentType: ContentType;
 }
- 
 
-const ChatItem: FC <ChatItemProps> = ({
-  layout,
-  chatItem,
-  contentType,
-}) => {
+const ChatItem: FC<ChatItemProps> = ({ layout, chatItem, contentType }) => {
   const prefixCls = usePrefixCls('chat-item');
   const { isLeftLayout, isRightLayout, isCenterLayout } = useMemo(() => {
     return {
@@ -41,7 +37,11 @@ const ChatItem: FC <ChatItemProps> = ({
           content = <EnlargeImg src={msgContent} />;
           break;
         case 'text':
-          content = msgContent;
+          content = (
+            <div
+              dangerouslySetInnerHTML={{ __html: messageParsing(msgContent) }}
+            ></div>
+          );
           break;
       }
       return content;

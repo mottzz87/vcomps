@@ -1,7 +1,13 @@
+/*
+ * @Author: Vane
+ * @Date: 2021-07-30 15:03:46
+ * @LastEditTime: 2021-08-02 18:08:18
+ * @LastEditors: Vane
+ * @Description:
+ * @FilePath: \vcomps\src\chat-panel\demos\index.tsx
+ */
 import React, { useState } from 'react';
 import { ChatPanel } from 'vcomps';
-
- 
 
 const Base: React.FC = () => {
   const [data, setData] = useState([
@@ -21,7 +27,8 @@ const Base: React.FC = () => {
       createTime: '2021-04-17 12:12:00',
       msgType: 1 as const, // 文本
       msgId: '121710f399b84322bdecc238199d6888',
-      msgContent: '/微笑/',
+      msgContent:
+        '/微笑/https://www.kaisir.cn/uploads/chatImg/64f0149dcb1f411eb854fb38a5bc7321.jpg?width=1203&height=677',
       userId: '222',
       userName: 'zhangshuaiqy',
     },
