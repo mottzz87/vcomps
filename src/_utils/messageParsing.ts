@@ -1,14 +1,14 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-02 16:49:23
- * @LastEditTime: 2021-08-02 18:13:47
+ * @LastEditTime: 2021-08-03 23:21:05
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \vcomps\src\_utils\messageParsing.ts
  */
 
 import { emoticonMap } from '@/_config/emoji';
-import { chatEmojiPrefix } from '@/_config';
+import { STATIC_IMG_EMOJI } from '@/_config';
 
 export const messageParsing = (msgText: string) => {
   const emojiReg = /\/(.+?)\//g;
@@ -22,7 +22,7 @@ export const messageParsing = (msgText: string) => {
         // @ts-ignore
         const { hover, info } = emoticonMap[a] || {};
         const style = { width: 28 };
-        return `<img style='width:28px' src='${chatEmojiPrefix}/${hover}' alt='${info}' />`;
+        return `<img style='width:28px' src='${STATIC_IMG_EMOJI}/${hover}' alt='${info}' />`;
       }
       return s;
     });
