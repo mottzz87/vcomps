@@ -1,3 +1,11 @@
+/*
+ * @Author: Vane
+ * @Date: 2021-07-30 15:03:46
+ * @LastEditTime: 2021-08-03 14:09:16
+ * @LastEditors: Vane
+ * @Description:
+ * @FilePath: \vcomps\src\chat-panel\components\ChatList\index.tsx
+ */
 import React from 'react';
 import { usePrefixCls } from '@/_hooks';
 import classNames from 'classnames';
@@ -23,8 +31,6 @@ export interface ChatPanelProps {
   loginId: number | string;
 }
 
- 
-
 const defaultFieldNames = {};
 
 const ChatPanel: React.FC<ChatPanelProps> = ({
@@ -36,6 +42,9 @@ const ChatPanel: React.FC<ChatPanelProps> = ({
 
   return (
     <div className={classNames(prefixCls)}>
+      <div className={`${prefixCls}-loading-msg`}>
+        <img src="" alt="" />
+      </div>
       {Array.isArray(dataSource)
         ? dataSource.map((item, index) => {
             const preData = index !== 0 ? dataSource[index - 1] : ({} as any);
