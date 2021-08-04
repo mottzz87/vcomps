@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-07-01 11:36:59
- * @LastEditTime: 2021-07-02 16:01:03
+ * @LastEditTime: 2021-08-03 22:15:35
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \vcomps\.umirc.ts
@@ -45,5 +45,6 @@ export default defineConfig({
   devServer: {
     port: 9000,
   },
+  mfsu: {},
   // more config: https://d.umijs.org/config
 });

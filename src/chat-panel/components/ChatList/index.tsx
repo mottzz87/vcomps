@@ -1,8 +1,8 @@
 /*
  * @Author: Vane
- * @Date: 2021-07-30 15:03:46
- * @LastEditTime: 2021-08-03 14:09:16
- * @LastEditors: Vane
+ * @Date: 2021-07-03 02:46:44
+ * @LastEditTime: 2021-08-04 15:17:02
+ * @LastEditors: Please set LastEditors
  * @Description:
  * @FilePath: \vcomps\src\chat-panel\components\ChatList\index.tsx
  */
@@ -10,6 +10,7 @@ import React from 'react';
 import { usePrefixCls } from '@/_hooks';
 import classNames from 'classnames';
 import { getTimeText, diffHalfHour } from '../../utils/getTimeText';
+import { STATIC_IMG_CHAT } from '@/_config';
 import {
   isLoginerFn,
   getLayout,
@@ -18,6 +19,7 @@ import {
 } from '../../utils';
 import ChatItem from './ChatItem';
 
+const loading = STATIC_IMG_CHAT + 'loading@2x.png';
 export interface ChatDataSource {
   id: number | string;
   msgType: MsgType;
@@ -42,8 +44,8 @@ const ChatPanel: React.FC<ChatPanelProps> = ({
 
   return (
     <div className={classNames(prefixCls)}>
-      <div className={`${prefixCls}-loading-msg`}>
-        <img src="" alt="" />
+      <div className={`${prefixCls}-loading-msg-panel`}>
+        <img src={loading} alt="loading..." />
       </div>
       {Array.isArray(dataSource)
         ? dataSource.map((item, index) => {
