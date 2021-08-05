@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-07-30 15:03:46
- * @LastEditTime: 2021-08-05 18:07:32
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-08-05 22:49:51
+ * @LastEditors: Vane
  * @Description: In User Settings Edit
  * @FilePath: \vcomps\src\chat-panel\index.tsx
  */
@@ -46,6 +46,7 @@ const ChatPanel: React.FC<ChatPanelProps> = ({
         loginId={loginId}
         hasMore={true}
         reachedTopThreshold={20}
+        isLoading={true}
       />
     </div>
   );

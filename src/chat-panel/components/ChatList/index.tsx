@@ -1,8 +1,8 @@
 /*
  * @Author: Vane
  * @Date: 2021-07-03 02:46:44
- * @LastEditTime: 2021-08-05 18:09:15
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-08-05 23:03:45
+ * @LastEditors: Vane
  * @Description:
  * @FilePath: \vcomps\src\chat-panel\components\ChatList\index.tsx
  */
@@ -61,13 +61,14 @@ const ChatPanel: React.FC<ChatPanelProps> = ({
 
   const handleScroll = useCallback(
     function (e) {
-      if (!hasMore || !isLoading) return;
+      console.log(hasMore, isLoading);
+      // if (!hasMore || !isLoading) return;
       const scrollTop = scrollRef.current.scrollTop;
 
-      // if (scrollTop < reachedTopThreshold && typeof queryHistoryMsg === 'function') {
-      //   queryHistoryMsg();
-      // }
-      console.log(12323);
+      if (scrollTop < reachedTopThreshold) {
+        // queryHistoryMsg();
+        console.log(12323);
+      }
     },
     [reachedTopThreshold, hasMore, isLoading],
   );
