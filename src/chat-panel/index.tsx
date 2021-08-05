@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-30 15:03:46
+ * @LastEditTime: 2021-08-05 18:07:32
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vcomps\src\chat-panel\index.tsx
+ */
 import React from 'react';
 import { usePrefixCls } from '@/_hooks';
 import classNames from 'classnames';
@@ -33,7 +41,12 @@ const ChatPanel: React.FC<ChatPanelProps> = ({
       className={classNames(prefixCls, `${prefixCls}-transparent-scroll-bar`)}
     >
       {/* 聊天内容区域 */}
-      <ChatList dataSource={dataSource} loginId={loginId} />
+      <ChatList
+        dataSource={dataSource}
+        loginId={loginId}
+        hasMore={true}
+        reachedTopThreshold={20}
+      />
     </div>
   );
 };

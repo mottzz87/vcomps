@@ -1,14 +1,22 @@
 /*
  * @Author: Vane
  * @Date: 2021-07-03 02:46:44
- * @LastEditTime: 2021-08-04 15:17:02
+ * @LastEditTime: 2021-08-05 18:09:15
  * @LastEditors: Please set LastEditors
  * @Description:
  * @FilePath: \vcomps\src\chat-panel\components\ChatList\index.tsx
  */
-import React from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from 'react';
 import { usePrefixCls } from '@/_hooks';
 import classNames from 'classnames';
+import { useThrottleFn, usePersistFn } from 'ahooks';
 import { getTimeText, diffHalfHour } from '../../utils/getTimeText';
 import { STATIC_IMG_CHAT } from '@/_config';
 import {
@@ -31,6 +39,9 @@ export interface ChatPanelProps {
   // 自定义 dataSource 中 label name children 的字段
   fieldNames?: FieldNames;
   loginId: number | string;
+  hasMore: boolean;
+  isLoading: boolean;
+  reachedTopThreshold?: number | string;
 }
 
 const defaultFieldNames = {};
@@ -39,14 +50,69 @@ const ChatPanel: React.FC<ChatPanelProps> = ({
   dataSource,
   fieldNames = defaultFieldNames,
   loginId,
+  hasMore,
+  isLoading,
+  reachedTopThreshold,
 }) => {
+  const scrollRef = useRef();
   const prefixCls = usePrefixCls('chat-list');
 
+  const largeImgPrefixCls = usePrefixCls('large-img');
+
+  const handleScroll = useCallback(
+    function (e) {
+      if (!hasMore || !isLoading) return;
+      const scrollTop = scrollRef.current.scrollTop;
+
+      // if (scrollTop < reachedTopThreshold && typeof queryHistoryMsg === 'function') {
+      //   queryHistoryMsg();
+      // }
+      console.log(12323);
+    },
+    [reachedTopThreshold, hasMore, isLoading],
+  );
+
+  const throttleFn = useThrottleFn(handleScroll, {
+    wait: 200,
+  });
+  const throttleScroll = throttleFn.run; // 初始化时，将聊天内容拉到最低, 时机：图片获取后
+
+  const scrollToBottom = () => {
+    const ele = scrollRef.current;
+    const { clientHeight, scrollHeight } = ele;
+    ele.scrollTo(0, Math.abs(scrollHeight - clientHeight));
+  };
+
+  useEffect(
+    function () {
+      scrollRef.current.addEventListener('scroll', throttleScroll);
+      return function () {
+        scrollRef.current.removeEventListener('scroll', throttleScroll);
+      };
+    },
+    [throttleScroll],
+  );
+
+  useLayoutEffect(function () {
+    const imgArr = document.querySelectorAll(
+      `.${prefixCls} .${largeImgPrefixCls}-img`,
+    );
+    Array.from(imgArr).forEach(function (item: any) {
+      item.onload = scrollToBottom;
+      item.onerror = scrollToBottom;
+    });
+
+    // 聊天列表触底
+    scrollToBottom();
+  }, []);
+
   return (
-    <div className={classNames(prefixCls)}>
-      <div className={`${prefixCls}-loading-msg-panel`}>
-        <img src={loading} alt="loading..." />
-      </div>
+    <div className={classNames(prefixCls)} ref={scrollRef}>
+      {hasMore && loading && (
+        <div className={`${prefixCls}-loading-msg-panel`}>
+          <img src={loading} alt="loading..." />
+        </div>
+      )}
       {Array.isArray(dataSource)
         ? dataSource.map((item, index) => {
             const preData = index !== 0 ? dataSource[index - 1] : ({} as any);

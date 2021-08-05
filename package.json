@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@types/react-transition-group": "^4.4.1",
+    "ahooks": "^2.10.9",
     "antd": "^4.16.6",
     "babel-plugin-import": "^1.13.3",
     "dayjs": "^1.10.5",

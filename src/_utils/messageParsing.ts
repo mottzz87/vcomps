@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-02 16:49:23
- * @LastEditTime: 2021-08-04 15:16:49
+ * @LastEditTime: 2021-08-04 15:34:39
  * @LastEditors: Please set LastEditors
  * @Description:
  * @FilePath: \vcomps\src\_utils\messageParsing.ts
@@ -32,8 +32,9 @@ export const messageParsing = (msgText: string) => {
 
   //超链接
   const linkMatch = () => {
+    const style = 'height: 28px; line-height: 28px; vertical-align: bottom';
     msgText = msgText.replace(linkReg, function (s: any) {
-      return `<a href='${s}' target='_blank'> ${s}</a>`;
+      return `<a style='${style}' href='${s}' target='_blank'> ${s}</a>`;
     });
   };
 

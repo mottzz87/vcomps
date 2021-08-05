@@ -1,8 +1,8 @@
 /*
  * @Author: Vane
  * @Date: 2021-07-01 11:36:59
- * @LastEditTime: 2021-08-03 22:15:35
- * @LastEditors: Vane
+ * @LastEditTime: 2021-08-04 16:19:54
+ * @LastEditors: Please set LastEditors
  * @Description:
  * @FilePath: \vcomps\.umirc.ts
  */
@@ -29,6 +29,7 @@ export default defineConfig({
   alias: {
     'vcomps/lib': join(__dirname, 'src'), // 用来按需加载css文件，demo中不写样式，就是使用了这个别名 babel-plugin-import
     vcomps: join(__dirname, 'src'), // import { Transition } from 'vcomps'
+    '@': join(__dirname, 'src'),
   },
   extraBabelPlugins: [
     [
