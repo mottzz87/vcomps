@@ -1,9 +1,9 @@
 /*
  * @Author: Vane
  * @Date: 2021-07-02 10:33:57
- * @LastEditTime: 2021-07-02 17:05:27
- * @LastEditors: Vane
- * @Description: 
+ * @LastEditTime: 2021-08-10 10:34:23
+ * @LastEditors: Please set LastEditors
+ * @Description:
  * @FilePath: \vcomps\src\enlarge-img\index.tsx
  */
 import React, { FC, useState } from 'react';

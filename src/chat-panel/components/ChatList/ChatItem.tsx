@@ -1,8 +1,8 @@
 /*
  * @Author: Vane
  * @Date: 2021-07-02 10:32:46
- * @LastEditTime: 2021-08-02 16:51:07
- * @LastEditors: Vane
+ * @LastEditTime: 2021-08-09 15:22:21
+ * @LastEditors: Please set LastEditors
  * @Description:
  * @FilePath: \vcomps\src\chat-panel\components\ChatList\ChatItem.tsx
  */
@@ -40,11 +40,11 @@ const ChatItem: FC<ChatItemProps> = ({ layout, chatItem, contentType }) => {
           content = (
             <div
               dangerouslySetInnerHTML={{ __html: messageParsing(msgContent) }}
-            ></div>
+            />
           );
           break;
       }
-      return content;
+      return content || msgContent;
     },
     [contentType],
   );

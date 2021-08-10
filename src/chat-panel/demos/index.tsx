@@ -1,17 +1,17 @@
 /*
  * @Author: Vane
  * @Date: 2021-07-30 15:03:46
- * @LastEditTime: 2021-08-05 18:04:14
+ * @LastEditTime: 2021-08-09 16:48:38
  * @LastEditors: Please set LastEditors
  * @Description:
  * @FilePath: \vcomps\src\chat-panel\demos\index.tsx
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChatPanel } from 'vcomps';
 import { STATIC_IMG } from '@/_config/index';
 
 const itemLink = {
-  id: 11111111,
+  id: 222,
   avatarSrc: 'https://gitee.com/assets/no_portrait.png',
   createTime: '2021-04-17 12:12:00',
   msgType: 1 as const, // 文本
@@ -34,8 +34,41 @@ const list = Array.from({ length: 2 }, (v, k) => k)
   .concat(itemLink);
 
 const Base: React.FC = () => {
-  const [data, setData] = useState(list);
-  return <ChatPanel dataSource={data} loginId={'222'} />;
+  const [data, setData] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasMore, setHasMore] = useState(true);
+
+  const getList = () => {
+    setData(list);
+  };
+
+  const loadMore = () => {
+    const list = [
+      {
+        ...itemLink,
+        id: Math.random() * 100,
+        msgContent: '/微笑/' + (data.length + 2),
+      },
+    ].concat(data);
+    setData(list);
+    if (list.length >= 10) {
+      setHasMore(false);
+    }
+  };
+
+  useEffect(() => {
+    getList();
+  }, []);
+
+  return (
+    <ChatPanel
+      dataSource={data}
+      loginId={'222'}
+      isLoading={isLoading}
+      hasMore={hasMore}
+      loadMore={loadMore}
+    />
+  );
 };
 
 export default Base;

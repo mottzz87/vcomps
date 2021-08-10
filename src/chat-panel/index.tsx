@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-07-30 15:03:46
- * @LastEditTime: 2021-08-05 22:49:51
- * @LastEditors: Vane
+ * @LastEditTime: 2021-08-10 10:11:37
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vcomps\src\chat-panel\index.tsx
  */
@@ -21,8 +21,12 @@ export interface FieldNames {}
 export interface ChatPanelProps {
   dataSource: ChatDataSource[];
   // 自定义 dataSource 中 label name children 的字段
-  fieldNames?: FieldNames;
+  // fieldNames?: FieldNames;
   loginId: number | string;
+  hasMore: boolean;
+  isLoading: boolean;
+  reachedTopThreshold?: number | string;
+  loadMore: Function;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
@@ -31,11 +35,14 @@ const defaultFieldNames = {};
 
 const ChatPanel: React.FC<ChatPanelProps> = ({
   dataSource,
-  fieldNames = defaultFieldNames,
+  // fieldNames = defaultFieldNames,
   loginId,
+  hasMore,
+  isLoading,
+  reachedTopThreshold,
+  loadMore,
 }) => {
   const prefixCls = usePrefixCls('chat-panel');
-
   return (
     <div
       className={classNames(prefixCls, `${prefixCls}-transparent-scroll-bar`)}
@@ -44,9 +51,10 @@ const ChatPanel: React.FC<ChatPanelProps> = ({
       <ChatList
         dataSource={dataSource}
         loginId={loginId}
-        hasMore={true}
-        reachedTopThreshold={20}
-        isLoading={true}
+        hasMore={hasMore}
+        reachedTopThreshold={reachedTopThreshold || 10}
+        isLoading={isLoading}
+        loadMore={loadMore}
       />
     </div>
   );
