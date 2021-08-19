@@ -1,8 +1,8 @@
 /*
  * @Author: Vane
  * @Date: 2021-07-30 15:03:46
- * @LastEditTime: 2021-08-09 16:48:38
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-08-10 16:13:59
+ * @LastEditors: Vane
  * @Description:
  * @FilePath: \vcomps\src\chat-panel\demos\index.tsx
  */
@@ -21,7 +21,7 @@ const itemLink = {
   userId: '222',
   userName: 'zhangshuaiqy',
 };
-const list = Array.from({ length: 2 }, (v, k) => k)
+const list = Array.from({ length: 20 }, (v, k) => k)
   .map((v, i) => ({
     id: i, // 消息id
     avatarSrc: 'https://gitee.com/assets/no_portrait.png', // 头像
@@ -50,6 +50,7 @@ const Base: React.FC = () => {
         msgContent: '/微笑/' + (data.length + 2),
       },
     ].concat(data);
+    console.log(11111111, list);
     setData(list);
     if (list.length >= 10) {
       setHasMore(false);
